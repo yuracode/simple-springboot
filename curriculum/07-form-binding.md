@@ -21,19 +21,33 @@ public String submit(@ModelAttribute Person person) {
 
 ## ステップ2：フォーム（`templates/person-form.html`）
 ```html
-<form th:action="@{/person/form}" th:object="${person}" method="post">
-  名前：<input type="text" th:field="*{name}"><br>
-  年齢：<input type="number" th:field="*{age}"><br>
-  <button type="submit">送信</button>
-</form>
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>人物の入力</title></head>
+<body>
+  <form th:action="@{/person/form}" th:object="${person}" method="post">
+    名前：<input type="text" th:field="*{name}"><br>
+    年齢：<input type="number" th:field="*{age}"><br>
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
 ```
 - `th:field="*{name}"` は `id="name" name="name" value="..."` を生成する。
 - `@{...}` は URL を組み立てる。
 
 ## ステップ3：結果（`templates/person-result.html`）
 ```html
-<p th:text="|${person.name}さんは${person.age}歳です。|"></p>
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>入力結果</title></head>
+<body>
+  <p th:text="|${person.name}さんは${person.age}歳です。|"></p>
+  <a href="/person/form">戻る</a>
+</body>
+</html>
 ```
+（`|...|` はリテラル置換。文字列と `${...}` を `+` なしでつなげられる）
 
 ## 考え方
 バインドの流れ：リクエストパラメータ → `new Person()` → `setName(...)`, `setAge(...)` → コントローラの引数。

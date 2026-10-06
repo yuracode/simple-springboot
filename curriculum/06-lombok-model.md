@@ -46,8 +46,16 @@ public String person(Model model) {
 ```
 `templates/person.html`
 ```html
-<p th:text="${person.name}"></p>   <!-- getName() が呼ばれる -->
-<p th:text="${person.age}"></p>
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>人物</title></head>
+<body>
+  <p>名前：<span th:text="${person.name}"></span></p>   <!-- getName() が呼ばれる -->
+  <p>年齢：<span th:text="${person.age}"></span></p>    <!-- getAge() が呼ばれる -->
+  <p>toString()：<span th:text="${person}"></span></p>  <!-- Lombok の toString() -->
+  <a href="/">トップへ</a>
+</body>
+</html>
 ```
 
 ## うまくいかないとき

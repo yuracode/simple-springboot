@@ -54,7 +54,19 @@ public class IndexController {
     }
 }
 ```
-`templates/index.html` には各レッスンへのリンクを並べる。
+`templates/index.html`（各レッスンへのリンク集。最初は1行だけでOK、レッスンが進むたびに追加していく）
+```html
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Spring Boot カリキュラム</title></head>
+<body>
+  <h1>Spring Boot カリキュラム</h1>
+  <ol start="1">
+    <li>シンプルなコントローラ：<a href="/hello">/hello</a> | <a href="/hello-text">/hello-text</a></li>
+  </ol>
+</body>
+</html>
+```
 
 ## 動作確認
 - <http://localhost:8080/hello>

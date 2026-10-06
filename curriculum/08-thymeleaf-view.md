@@ -13,22 +13,35 @@ public String thDemo(Model model) {
 
 ## `templates/th-demo.html`
 ```html
-<h1 th:text="${title}">タイトル</h1>
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title th:text="${title}">タイトル</title></head>
+<body>
+  <!-- 1. 出力（HTML エスケープされる） -->
+  <h1 th:text="${title}">タイトル</h1>
 
-<p th:if="${score >= 60}">合格</p>
-<p th:unless="${score >= 60}">不合格</p>
-<p th:text="${score >= 80} ? '優秀' : '普通'"></p>
+  <!-- 2. 条件分岐 -->
+  <p th:if="${score >= 60}">合格</p>
+  <p th:unless="${score >= 60}">不合格</p>
 
-<table border="1">
-  <tr><th>No.</th><th>名前</th><th>年齢</th></tr>
-  <tr th:each="p, st : ${people}">
-    <td th:text="${st.count}"></td>
-    <td th:text="${p.name}"></td>
-    <td th:text="${p.age}"></td>
-  </tr>
-</table>
+  <!-- 3. 三項演算子 -->
+  <p th:text="${score >= 80} ? '優秀' : '普通'"></p>
 
-<a th:href="@{/greet(name=${people[0].name})}">1人目にあいさつ</a>
+  <!-- 4. 繰り返し（st はループの状態：count, index, first, last など） -->
+  <table border="1">
+    <tr><th>No.</th><th>名前</th><th>年齢</th></tr>
+    <tr th:each="p, st : ${people}">
+      <td th:text="${st.count}"></td>
+      <td th:text="${p.name}"></td>
+      <td th:text="${p.age}"></td>
+    </tr>
+  </table>
+
+  <!-- 5. パラメータ付きリンク → /greet?name=太郎 -->
+  <a th:href="@{/greet(name=${people[0].name})}">1人目にあいさつ</a> |
+  <a href="/">トップへ</a>
+</body>
+</html>
 ```
 
 ## 早見表

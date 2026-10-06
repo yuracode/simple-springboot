@@ -28,13 +28,22 @@ public String simpleCalc(@RequestParam double base, @RequestParam double height,
     return "triangle-simple";
 }
 ```
+`templates/triangle-simple.html`
 ```html
-<form action="/triangle/simple" method="post">
-  底辺：<input type="number" step="any" name="base"><br>
-  高さ：<input type="number" step="any" name="height"><br>
-  <button type="submit">計算する</button>
-</form>
-<p th:if="${area != null}" th:text="|${base} × ${height} ÷ 2 = ${area}|"></p>
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>三角形の面積（シンプル版）</title></head>
+<body>
+  <h1>三角形の面積（シンプル版）</h1>
+  <form action="/triangle/simple" method="post">
+    底辺：<input type="number" step="any" name="base" required><br>
+    高さ：<input type="number" step="any" name="height" required><br>
+    <button type="submit">計算する</button>
+  </form>
+  <p th:if="${area != null}" th:text="|${base} × ${height} ÷ 2 = ${area}|"></p>
+  <a href="/">トップへ</a>
+</body>
+</html>
 ```
 
 ## ステップ2：Lombok モデル
@@ -87,17 +96,30 @@ public class TriangleController {
     }
 }
 ```
+`templates/triangle.html`
 ```html
-<form th:action="@{/triangle}" th:object="${triangle}" method="post">
-  底辺：<input type="number" step="any" th:field="*{base}">
-        <span th:errors="*{base}" class="error"></span><br>
-  高さ：<input type="number" step="any" th:field="*{height}">
-        <span th:errors="*{height}" class="error"></span><br>
-  <button type="submit">計算する</button>
-</form>
-<p th:if="${triangle.area != null}"
-   th:text="|面積：${#numbers.formatDecimal(triangle.area, 1, 2)}|"></p>
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"><title>三角形の面積</title>
+  <style>.error { color: red; }</style>
+</head>
+<body>
+  <h1>三角形の面積（Thymeleaf 版）</h1>
+  <form th:action="@{/triangle}" th:object="${triangle}" method="post">
+    底辺：<input type="number" step="any" th:field="*{base}">
+          <span th:errors="*{base}" class="error"></span><br>
+    高さ：<input type="number" step="any" th:field="*{height}">
+          <span th:errors="*{height}" class="error"></span><br>
+    <button type="submit">計算する</button>
+  </form>
+  <p th:if="${triangle.area != null}"
+     th:text="|面積：${#numbers.formatDecimal(triangle.area, 1, 2)}|"></p>
+  <a href="/">トップへ</a>
+</body>
+</html>
 ```
+（`th:errors` はステップ5の入力チェックを入れるまでは何も表示されない）
 
 ## ステップ5：入力チェック
 ```xml
@@ -130,14 +152,22 @@ public String jspCalc(@Validated @ModelAttribute Triangle triangle, BindingResul
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<form action="/jsp/triangle" method="post">
-  底辺：<input type="number" step="any" name="base"   value="${triangle.base}"><br>
-  高さ：<input type="number" step="any" name="height" value="${triangle.height}"><br>
-  <button type="submit">計算する</button>
-</form>
-<c:if test="${not empty triangle.area}">
-  <p>面積：<fmt:formatNumber value="${triangle.area}" maxFractionDigits="2"/></p>
-</c:if>
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>三角形の面積（JSP 版）</title></head>
+<body>
+  <h1>三角形の面積（JSP 版）</h1>
+  <form action="/jsp/triangle" method="post">
+    底辺：<input type="number" step="any" name="base"   value="${triangle.base}"><br>
+    高さ：<input type="number" step="any" name="height" value="${triangle.height}"><br>
+    <button type="submit">計算する</button>
+  </form>
+  <c:if test="${not empty triangle.area}">
+    <p>面積：<fmt:formatNumber value="${triangle.area}" maxFractionDigits="2"/></p>
+  </c:if>
+  <a href="/">トップへ</a>
+</body>
+</html>
 ```
 
 ## ステップ7：単体テスト
