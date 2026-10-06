@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>三角形の面積（シンプル版）</title></head>
+<body>
+  <h1>三角形の面積（シンプル版）</h1>
+  <form action="/triangle/simple" method="post">
+    底辺：<input type="number" step="any" name="base" required><br>
+    高さ：<input type="number" step="any" name="height" required><br>
+    <button type="submit">計算する</button>
+  </form>
+  <p th:if="${area != null}" th:text="|${base} × ${height} ÷ 2 = ${area}|"></p>
+  <a href="/">トップへ</a>
+</body>
+</html>

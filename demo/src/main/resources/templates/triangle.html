@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"><title>三角形の面積</title>
+  <style>.error { color: red; }</style>
+</head>
+<body>
+  <h1>三角形の面積（Thymeleaf 版）</h1>
+  <form th:action="@{/triangle}" th:object="${triangle}" method="post">
+    底辺：<input type="number" step="any" th:field="*{base}">
+          <span th:errors="*{base}" class="error"></span><br>
+    高さ：<input type="number" step="any" th:field="*{height}">
+          <span th:errors="*{height}" class="error"></span><br>
+    <button type="submit">計算する</button>
+  </form>
+  <p th:if="${triangle.area != null}"
+     th:text="|面積：${#numbers.formatDecimal(triangle.area, 1, 2)}|"></p>
+  <a href="/">トップへ</a>
+</body>
+</html>

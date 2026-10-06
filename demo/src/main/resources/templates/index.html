@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Spring Boot カリキュラム</title></head>
+<body>
+  <h1>Spring Boot カリキュラム</h1>
+  <ol start="1">
+    <li>シンプルなコントローラ：<a href="/hello">/hello</a> | <a href="/hello-text">/hello-text</a></li>
+    <li>クエリパラメータ：<a href="/greet?name=太郎">/greet?name=太郎</a> | <a href="/greet2">/greet2</a> | <a href="/add?a=3&amp;b=5">/add?a=3&amp;b=5</a></li>
+    <li>パス変数：<a href="/users/42">/users/42</a> | <a href="/square/7">/square/7</a></li>
+    <li>フォーム（GET / POST）：<a href="/form">/form</a></li>
+    <li>Model でビューへ：<a href="/form">/form</a> の3つ目のフォーム</li>
+    <li>Lombok：<a href="/person">/person</a></li>
+    <li>フォームバインド：<a href="/person/form">/person/form</a></li>
+    <li>Thymeleaf：<a href="/th-demo">/th-demo</a></li>
+    <li>JSP：<a href="/jsp/person">/jsp/person</a></li>
+    <li>三角形の面積：<a href="/triangle/simple">シンプル版</a> | <a href="/triangle">Thymeleaf 版</a> | <a href="/jsp/triangle">JSP 版</a></li>
+  </ol>
+</body>
+</html>

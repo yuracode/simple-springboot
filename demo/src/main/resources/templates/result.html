@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>結果</title></head>
+<body>
+  <p>名前：<span th:text="${name}">ダミー</span></p>
+  <p>年齢：<span th:text="${age}">0</span></p>
+  <p th:if="${adult}">成人です。</p>
+  <p th:unless="${adult}">未成年です。</p>
+  <a href="/form">戻る</a>
+</body>
+</html>
