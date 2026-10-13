@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"><title>書籍一覧</title>
+  <style>table { border-collapse: collapse; } th, td { border: 1px solid #999; padding: 4px 8px; }</style>
+</head>
+<body>
+  <h1>書籍一覧（Thymeleaf 版）</h1>
+  <p th:if="${books.isEmpty()}">書籍が登録されていません。</p>
+  <table th:unless="${books.isEmpty()}">
+    <tr><th>ID</th><th>タイトル</th><th>著者</th><th>価格</th></tr>
+    <tr th:each="b : ${books}">
+      <td th:text="${b.id}"></td>
+      <td><a th:href="@{/books/{id}(id=${b.id})}" th:text="${b.title}"></a></td>
+      <td th:text="${b.author}"></td>
+      <td th:text="|${#numbers.formatInteger(b.price, 1, 'COMMA')}円|"></td>
+    </tr>
+  </table>
+  <p th:text="|全 ${books.size()} 冊|"></p>
+  <a href="/">トップへ</a>
+</body>
+</html>

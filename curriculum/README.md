@@ -12,7 +12,8 @@
 | ビルドツール | Maven（`mvnw` / `mvnw.cmd`） |
 | Spring Boot | 4.1.1 |
 | Java | 21 |
-| 依存関係 | webmvc, thymeleaf, validation, lombok, tomcat-embed-jasper（JSP） |
+| 依存関係 | webmvc, thymeleaf, validation, lombok, tomcat-embed-jasper（JSP）, jdbc, postgresql |
+| データベース | PostgreSQL `localhost:5432/springboot`（postgres / postgres）※レッスン11以降 |
 | ベースパッケージ | `com.example.demo` |
 
 ## レッスン一覧
@@ -30,6 +31,9 @@
 | 08 | [08-thymeleaf-view.md](08-thymeleaf-view.md) | Thymeleaf の基本 |
 | 09 | [09-jsp-view.md](09-jsp-view.md) | JSP + JSTL/EL を Thymeleaf と併用する |
 | 10 | [10-triangle-area.md](10-triangle-area.md) | 総まとめ：三角形の面積を求めるプログラム |
+| 11 | [11-database-setup.md](11-database-setup.md) | PostgreSQL に接続する準備（schema.sql / data.sql） |
+| 12 | [12-book-list.md](12-book-list.md) | `JdbcTemplate` で書籍一覧を表示する |
+| 13 | [13-book-service-detail.md](13-book-service-detail.md) | サービス層を挟む + 書籍の詳細ページ |
 
 ## 進め方
 
@@ -50,4 +54,5 @@
 | `response.sendRedirect(...)` | `return "redirect:/パス";` |
 | JavaBeans（Getter/Setter を手書き） | Lombok の `@Data` |
 | モデルの「Logic」クラス | コントローラに注入する `@Service` クラス |
+| DAO（`DriverManager` + `PreparedStatement`） | `@Repository` + `JdbcTemplate` |
 | JSP + EL `${...}` | JSP（引き続き利用可）または Thymeleaf `th:text="${...}"` |

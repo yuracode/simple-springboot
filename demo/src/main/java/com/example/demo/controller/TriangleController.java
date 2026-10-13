@@ -49,19 +49,4 @@ public class TriangleController {
         }
         return "triangle";
     }
-
-    // ステップ6：JSP 版
-    @GetMapping("/jsp/triangle")
-    public String jspForm(Model model) {
-        model.addAttribute("triangle", new Triangle());
-        return "jsp/triangle";
-    }
-
-    @PostMapping("/jsp/triangle")
-    public String jspCalc(@Validated @ModelAttribute Triangle triangle, BindingResult result) {
-        if (!result.hasErrors()) {
-            service.calcArea(triangle);
-        }
-        return "jsp/triangle";
-    }
 }

@@ -1,7 +1,7 @@
 # レッスン10：総まとめ — 三角形の面積を求めるプログラム
 
 ## 目標
-これまでの内容をすべて組み合わせる：フォーム → コントローラ → Lombok モデル → ロジック → ビュー（Thymeleaf と JSP）。
+これまでの内容をすべて組み合わせる：フォーム → コントローラ → Lombok モデル → ロジック → ビュー（Thymeleaf）。
 
 **面積 = 底辺 × 高さ ÷ 2**
 
@@ -11,7 +11,7 @@
 | モデル | `model/Triangle.java` | `base`（底辺）、`height`（高さ）、`area`（面積） |
 | ロジック | `service/TriangleService.java` | 計算（教科書の Logic クラスに相当） |
 | コントローラ | `controller/TriangleController.java` | GET でフォーム表示、POST で計算 |
-| ビュー | `templates/triangle.html`、`WEB-INF/jsp/triangle.jsp` | フォーム + 結果 |
+| ビュー | `templates/triangle.html` | フォーム + 結果 |
 
 ## ステップ1：一番シンプルな版（`@RequestParam`、モデルクラスなし）
 ```java
@@ -131,46 +131,7 @@ public class TriangleController {
 `@Validated` + `BindingResult`（チェック対象の引数の直後に置く）で、400 エラー画面ではなく
 `th:errors` でメッセージを表示できる。
 
-## ステップ6：JSP 版
-```java
-@GetMapping("/jsp/triangle")
-public String jspForm(Model model) {
-    model.addAttribute("triangle", new Triangle());
-    return "jsp/triangle";
-}
-
-@PostMapping("/jsp/triangle")
-public String jspCalc(@Validated @ModelAttribute Triangle triangle, BindingResult result) {
-    if (!result.hasErrors()) {
-        service.calcArea(triangle);
-    }
-    return "jsp/triangle";
-}
-```
-`WEB-INF/jsp/triangle.jsp`
-```jsp
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<!DOCTYPE html>
-<html lang="ja">
-<head><meta charset="UTF-8"><title>三角形の面積（JSP 版）</title></head>
-<body>
-  <h1>三角形の面積（JSP 版）</h1>
-  <form action="/jsp/triangle" method="post">
-    底辺：<input type="number" step="any" name="base"   value="${triangle.base}"><br>
-    高さ：<input type="number" step="any" name="height" value="${triangle.height}"><br>
-    <button type="submit">計算する</button>
-  </form>
-  <c:if test="${not empty triangle.area}">
-    <p>面積：<fmt:formatNumber value="${triangle.area}" maxFractionDigits="2"/></p>
-  </c:if>
-  <a href="/">トップへ</a>
-</body>
-</html>
-```
-
-## ステップ7：単体テスト
+## ステップ6：単体テスト
 ```java
 class TriangleServiceTest {
     @Test
@@ -189,7 +150,6 @@ class TriangleServiceTest {
 - [ ] 未入力のとき 400 画面ではなくエラーメッセージが出る
 - [ ] マイナスの値ははじかれる
 - [ ] 小数（例：2.5）も計算できる
-- [ ] Thymeleaf と JSP で同じ結果になる
 
 ## チャレンジ
 - 長方形・円も選べるようにし、`ShapeService` を作る。
