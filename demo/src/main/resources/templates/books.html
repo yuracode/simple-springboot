@@ -2,10 +2,33 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"><title>書籍一覧</title>
-  <style>table { border-collapse: collapse; } th, td { border: 1px solid #999; padding: 4px 8px; }</style>
+  <style>
+    table { border-collapse: collapse; } th, td { border: 1px solid #999; padding: 4px 8px; }
+    .message { color: green; }
+  </style>
 </head>
 <body>
+  <!-- レッスン19：ログイン状態 -->
+  <div th:if="${username != null}">
+    ログイン中：<span th:text="${username}"></span>
+    <form th:action="@{/logout}" method="post" style="display:inline">
+      <button type="submit">ログアウト</button>
+    </form>
+  </div>
+  <div th:if="${username == null}"><a href="/login">ログイン</a></div>
+
   <h1>書籍一覧（Thymeleaf 版）</h1>
+
+  <!-- レッスン17：登録後のメッセージ（フラッシュ属性） -->
+  <p class="message" th:if="${message}" th:text="${message}"></p>
+
+  <!-- レッスン14：キーワード検索 -->
+  <form action="/books" method="get">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="タイトル・著者">
+    <button type="submit">検索</button>
+    <a href="/books">クリア</a>
+  </form>
+
   <p th:if="${books.isEmpty()}">書籍が登録されていません。</p>
   <table th:unless="${books.isEmpty()}">
     <tr><th>ID</th><th>タイトル</th><th>著者</th><th>価格</th></tr>
@@ -17,6 +40,7 @@
     </tr>
   </table>
   <p th:text="|全 ${books.size()} 冊|"></p>
+  <p><a href="/books/new">新しい本を登録する</a></p>
   <a href="/">トップへ</a>
 </body>
 </html>

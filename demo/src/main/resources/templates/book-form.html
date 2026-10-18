@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"><title>書籍の登録</title>
+  <style>.error { color: red; } input.is-error { border: 2px solid red; }</style>
+</head>
+<body>
+  <h1>書籍の登録</h1>
+  <form th:action="@{/books}" th:object="${bookForm}" method="post">
+    タイトル：<input type="text" th:field="*{title}" th:errorclass="is-error">
+      <span class="error" th:errors="*{title}"></span><br>
+    著者：<input type="text" th:field="*{author}" th:errorclass="is-error">
+      <span class="error" th:errors="*{author}"></span><br>
+    価格：<input type="text" th:field="*{price}" th:errorclass="is-error">円
+      <span class="error" th:errors="*{price}"></span><br>
+    <button type="submit">登録する</button>
+  </form>
+  <a href="/books">一覧へ戻る</a>
+</body>
+</html>

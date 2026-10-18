@@ -12,7 +12,7 @@
 | ビルドツール | Maven（`mvnw` / `mvnw.cmd`） |
 | Spring Boot | 4.1.1 |
 | Java | 21 |
-| 依存関係 | webmvc, thymeleaf, validation, lombok, tomcat-embed-jasper（JSP）, jdbc, postgresql |
+| 依存関係 | webmvc, thymeleaf, validation, lombok, tomcat-embed-jasper（JSP）, jdbc, postgresql, data-jpa（レッスン16〜）, security（レッスン19〜） |
 | データベース | PostgreSQL `localhost:5432/springboot`（postgres / postgres）※レッスン11以降 |
 | ベースパッケージ | `com.example.demo` |
 
@@ -34,6 +34,13 @@
 | 11 | [11-database-setup.md](11-database-setup.md) | PostgreSQL に接続する準備（schema.sql / data.sql） |
 | 12 | [12-book-list.md](12-book-list.md) | `JdbcTemplate` で書籍一覧を表示する |
 | 13 | [13-book-service-detail.md](13-book-service-detail.md) | サービス層を挟む + 書籍の詳細ページ |
+| 14 | [14-service-layer.md](14-service-layer.md) | サービス層に処理を集める（キーワード検索） |
+| 15 | [15-dependency-injection.md](15-dependency-injection.md) | DI とコンストラクタインジェクション |
+| 16 | [16-spring-data-jpa.md](16-spring-data-jpa.md) | Spring Data JPA に移行する（JdbcTemplate 版と比較） |
+| 17 | [17-book-register-form.md](17-book-register-form.md) | Thymeleaf で登録フォーム（フォーム → 登録 → 一覧） |
+| 18 | [18-validation-exception.md](18-validation-exception.md) | 入力チェック（`@Valid`）と例外処理（`@ControllerAdvice`） |
+| 19 | [19-spring-security.md](19-spring-security.md) | Spring Security でログインする |
+| 20 | [20-final-exercise.md](20-final-exercise.md) | 最終演習：ToDo リストを作る（問題のみ） |
 
 ## 進め方
 
@@ -54,5 +61,9 @@
 | `response.sendRedirect(...)` | `return "redirect:/パス";` |
 | JavaBeans（Getter/Setter を手書き） | Lombok の `@Data` |
 | モデルの「Logic」クラス | コントローラに注入する `@Service` クラス |
-| DAO（`DriverManager` + `PreparedStatement`） | `@Repository` + `JdbcTemplate` |
+| DAO（`DriverManager` + `PreparedStatement`） | `@Repository` + `JdbcTemplate`、または Spring Data JPA の `JpaRepository` |
+| Logic クラスを `new` して使う | コンストラクタインジェクション（DI） |
+| 入力チェックを `if` で手書き | `@Valid` + `@NotBlank` などのアノテーション |
+| `try-catch` してエラーページへ `forward` | `@ExceptionHandler` / `@ControllerAdvice` |
+| セッション + フィルタでログインチェック | Spring Security |
 | JSP + EL `${...}` | JSP（引き続き利用可）または Thymeleaf `th:text="${...}"` |

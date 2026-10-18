@@ -3,7 +3,7 @@
 <head><meta charset="UTF-8"><title>フォーム</title></head>
 <body>
   <h2>POST：テキストを返す（レッスン04）</h2>
-  <form action="/form" method="post">
+  <form th:action="@{/form}" method="post">
     名前：<input type="text" name="name"><br>
     年齢：<input type="number" name="age"><br>
     <button type="submit">送信</button>
@@ -16,14 +16,14 @@
   </form>
 
   <h2>POST：Model を使って結果画面へ（レッスン05）</h2>
-  <form action="/form2" method="post">
+  <form th:action="@{/form2}" method="post">
     名前：<input type="text" name="name"><br>
     年齢：<input type="number" name="age"><br>
     <button type="submit">送信</button>
   </form>
 
   <h2>POST してリダイレクト（レッスン05）</h2>
-  <form action="/form3" method="post">
+  <form th:action="@{/form3}" method="post">
     <button type="submit">/hello へリダイレクト</button>
   </form>
   <a href="/">トップへ</a>
