@@ -2,15 +2,15 @@
 
 ## 1. URL 一覧
 
-| No | メソッド | URL | 処理 | 画面（テンプレート） | モック |
-|---|---|---|---|---|---|
-| 1 | GET | `/books` | 一覧の表示（キーワード検索つき） | `books.html` | `mock/books.html` |
-| 2 | GET | `/books/new` | 登録フォームの表示 | `book-form.html` | `mock/book-new.html` |
-| 3 | POST | `/books` | 登録 | No.1 へリダイレクト | ― |
-| 4 | GET | `/books/{id}` | 詳細の表示 | `book-detail.html` | `mock/book-detail.html` |
-| 5 | GET | `/books/{id}/edit` | 編集フォームの表示 | `book-form.html` | `mock/book-edit.html` |
-| 6 | POST | `/books/{id}` | 更新 | No.1 へリダイレクト | ― |
-| 7 | POST | `/books/{id}/delete` | 削除 | No.1 へリダイレクト | ― |
+| No | メソッド | URL | 処理 | 画面（テンプレート） |
+|---|---|---|---|---|
+| 1 | GET | `/books` | 一覧の表示（キーワード検索つき） | `books.html` |
+| 2 | GET | `/books/new` | 登録フォームの表示 | `book-form.html` |
+| 3 | POST | `/books` | 登録 | No.1 へリダイレクト |
+| 4 | GET | `/books/{id}` | 詳細の表示 | `book-detail.html` |
+| 5 | GET | `/books/{id}/edit` | 編集フォームの表示 | `book-form.html` |
+| 6 | POST | `/books/{id}` | 更新 | No.1 へリダイレクト |
+| 7 | POST | `/books/{id}/delete` | 削除 | No.1 へリダイレクト |
 
 - 登録（No.2）と編集（No.5）は同じテンプレート `book-form.html` を使い、`book.id` が `null` かどうかで見出し・ボタン名・送信先を切り替える。
 - POST のあとは必ず `redirect:` する（PRG パターン。F5 での二重登録を防ぐ）。

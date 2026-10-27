@@ -1,15 +1,15 @@
 # 書籍のメンテナンス（付録A）画面設計書
 
-`mock/` の HTML から起こした画面ごとの設計。URL・Model の詳細は [url-design.md](url-design.md)、テーブルは [table-design.md](table-design.md)、画面のつながりは [screen-flow.md](screen-flow.md) を参照。
+画面ごとの設計。URL・Model の詳細は [url-design.md](url-design.md)、テーブルは [table-design.md](table-design.md)、画面のつながりは [screen-flow.md](screen-flow.md) を参照。
 
 ## 1. 画面一覧
 
-| 画面ID | 画面名 | URL（url-design の No） | テンプレート | モック |
-|---|---|---|---|---|
-| SC-01 | 書籍一覧 | `GET /books`（No.1） | `books.html` | `mock/books.html` |
-| SC-02 | 書籍の登録 | `GET /books/new`（No.2） | `book-form.html` | `mock/book-new.html` |
-| SC-03 | 書籍の編集 | `GET /books/{id}/edit`（No.5） | `book-form.html` | `mock/book-edit.html` |
-| SC-04 | 書籍の詳細 | `GET /books/{id}`（No.4） | `book-detail.html` | `mock/book-detail.html` |
+| 画面ID | 画面名 | URL（url-design の No） | テンプレート |
+|---|---|---|---|
+| SC-01 | 書籍一覧 | `GET /books`（No.1） | `books.html` |
+| SC-02 | 書籍の登録 | `GET /books/new`（No.2） | `book-form.html` |
+| SC-03 | 書籍の編集 | `GET /books/{id}/edit`（No.5） | `book-form.html` |
+| SC-04 | 書籍の詳細 | `GET /books/{id}`（No.4） | `book-detail.html` |
 
 - SC-02 と SC-03 は同じテンプレートを使い、`book.id` が `null` かどうかで見出し・ボタン名・送信先を切り替える。
 - 「見つかりません」の画面はない。存在しない ID のときは SC-01 にリダイレクトする（404 画面はレッスン18）。
@@ -32,7 +32,6 @@
 | URL | `GET /books?keyword=...`（`keyword` は省略可。省略時は全件） |
 | 役割 | アプリの入口。書籍の一覧を表示し、登録・詳細・編集・削除へ進む |
 | Model | `books`、`keyword`、`message` |
-| モックの状態 | id=1 を更新した直後（完了メッセージを表示） |
 
 ![SC-01 書籍一覧](images/sc01-books.png)
 
@@ -81,7 +80,6 @@
 | URL | `GET /books/new` |
 | 役割 | 書籍を 1 冊登録する |
 | 初期値 | すべて空 |
-| モックの状態 | 開いた直後 |
 
 ![SC-02 書籍の登録](images/sc02-book-new.png)
 
@@ -114,7 +112,6 @@
 | URL | `GET /books/{id}/edit` |
 | 役割 | 登録済みの書籍を直す |
 | 初期値 | DB から読んだ書籍の値 |
-| モックの状態 | id=1（スッキリわかるJava入門）を開いたところ |
 
 ![SC-03 書籍の編集](images/sc03-book-edit.png)
 
@@ -146,7 +143,6 @@
 | URL | `GET /books/{id}` |
 | 役割 | 1 冊の書籍の内容を見る |
 | Model | `book` |
-| モックの状態 | id=1（スッキリわかるJava入門）を開いたところ |
 
 ![SC-04 書籍の詳細](images/sc04-book-detail.png)
 

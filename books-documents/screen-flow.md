@@ -1,6 +1,6 @@
 # 書籍のメンテナンス（付録A）画面遷移図
 
-`mock/` の 4 画面のつながりを図にしたもの。URL は [url-design.md](url-design.md) の No を付けている。
+4 画面のつながりを図にしたもの。URL は [url-design.md](url-design.md) の No を付けている。
 
 - 実線の矢印（`-->`）：リンク（GET）で移動する
 - 点線の矢印（`-.->`）：フォームを POST して、`redirect:` で移動する
@@ -13,10 +13,10 @@
 
 ```mermaid
 flowchart TD
-    list["書籍一覧<br>GET /books（No.1）<br>mock/books.html"]
-    new["書籍の登録<br>GET /books/new（No.2）<br>mock/book-new.html"]
-    detail["書籍の詳細<br>GET /books/{id}（No.4）<br>mock/book-detail.html"]
-    edit["書籍の編集<br>GET /books/{id}/edit（No.5）<br>mock/book-edit.html"]
+    list["書籍一覧<br>GET /books（No.1）"]
+    new["書籍の登録<br>GET /books/new（No.2）"]
+    detail["書籍の詳細<br>GET /books/{id}（No.4）"]
+    edit["書籍の編集<br>GET /books/{id}/edit（No.5）"]
 
     list --> new
     list --> detail
@@ -27,9 +27,9 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    list["書籍一覧<br>GET /books（No.1）<br>mock/books.html"]
-    new["書籍の登録<br>GET /books/new（No.2）<br>mock/book-new.html"]
-    edit["書籍の編集<br>GET /books/{id}/edit（No.5）<br>mock/book-edit.html"]
+    list["書籍一覧<br>GET /books（No.1）"]
+    new["書籍の登録<br>GET /books/new（No.2）"]
+    edit["書籍の編集<br>GET /books/{id}/edit（No.5）"]
 
     list -->|新しく登録する| new
     list -->|編集| edit
@@ -51,8 +51,8 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    list["書籍一覧<br>GET /books（No.1）<br>mock/books.html"]
-    detail["書籍の詳細<br>GET /books/{id}（No.4）<br>mock/book-detail.html"]
+    list["書籍一覧<br>GET /books（No.1）"]
+    detail["書籍の詳細<br>GET /books/{id}（No.4）"]
 
     list -->|タイトル| detail
     detail -->|一覧へ戻る| list
@@ -68,7 +68,7 @@ URL の ID が DB にないときは、専用の画面を出さず **一覧へ�
 flowchart TD
     getReq(["GET の URL（No.4・5）<br>GET /books/{id}<br>GET /books/{id}/edit"])
     postReq(["POST の URL（No.6・7）<br>POST /books/{id}<br>POST /books/{id}/delete"])
-    list["書籍一覧<br>GET /books（No.1）<br>mock/books.html"]
+    list["書籍一覧<br>GET /books（No.1）"]
 
     getReq -->|"ID がない<br>（メッセージなし）"| list
     postReq -.->|"ID がない<br>「その書籍は見つかりませんでした」"| list
