@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><title>カテゴリの追加</title>
+  <style>.error { color: red; } input.is-error { border: 2px solid red; }</style>
+</head>
+<body>
+  <!-- モック：GET /categories/new（同じ名前で登録しようとしてエラーになった状態） -->
+  <h1>カテゴリの追加</h1>
+  <form action="categories.html" method="get">
+    カテゴリ名：<input type="text" name="name" value="おやつ" class="is-error"><br>
+    <span class="error">そのカテゴリ名はすでに登録されています</span><br>
+    表示順：<input type="text" name="sortOrder" value="8" size="4"><br>
+    <button type="submit">登録する</button>
+  </form>
+  <a href="categories.html">カテゴリの一覧へ戻る</a>
+</body>
+</html>

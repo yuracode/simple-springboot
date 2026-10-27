@@ -41,6 +41,8 @@
 | 18 | [18-validation-exception.md](18-validation-exception.md) | 入力チェック（`@Valid`）と例外処理（`@ControllerAdvice`） |
 | 19 | [19-spring-security.md](19-spring-security.md) | Spring Security でログインする |
 | 20 | [20-final-exercise.md](20-final-exercise.md) | 最終演習：ToDo リストを作る（問題のみ） |
+| 付録A | [AppendixA-book-maintenance-jdbc.md](AppendixA-book-maintenance-jdbc.md) | 書籍のメンテナンス（登録・更新・削除）を JdbcTemplate で作る（レッスン14のあとに取り組める） |
+| 付録B | [AppendixB-book-service-layer.md](AppendixB-book-service-layer.md) | サービス層を挟み、リポジトリの実装を差し替えてもコントローラを変えずに済むようにする（付録Aのあと） |
 
 ## 進め方
 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><title>カテゴリの編集</title>
+  <style>.error { color: red; } input.is-error { border: 2px solid red; }</style>
+</head>
+<body>
+  <!-- モック：GET /categories/{id}/edit（id=4 を開いた状態） -->
+  <h1>カテゴリの編集</h1>
+  <form action="categories.html" method="get">
+    カテゴリ名：<input type="text" name="name" value="本"><br>
+    表示順：<input type="text" name="sortOrder" value="4" size="4"><br>
+    <button type="submit">更新する</button>
+  </form>
+  <p>カテゴリ名を変えると、このカテゴリの記録（1 件）すべての表示が変わります。</p>
+  <a href="categories.html">カテゴリの一覧へ戻る</a>
+</body>
+</html>

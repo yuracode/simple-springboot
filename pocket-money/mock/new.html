@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><title>記録の登録</title>
+  <style>.error { color: red; } input.is-error { border: 2px solid red; }</style>
+</head>
+<body>
+  <!-- モック：GET /pocket/new（金額が未入力でエラーになった状態） -->
+  <h1>記録の登録</h1>
+  <form action="index.html" method="get">
+    日付：<input type="date" name="entryDate" value="2026-10-26"><br>
+    種類：
+      <label><input type="radio" name="type" value="収入">収入</label>
+      <label><input type="radio" name="type" value="支出" checked>支出</label><br>
+    カテゴリ：
+      <select name="categoryId">
+        <option value="1">おこづかい</option>
+        <option value="2">お手伝い</option>
+        <option value="3" selected>おやつ</option>
+        <option value="4">本</option>
+        <option value="5">文房具</option>
+        <option value="6">あそび</option>
+        <option value="7">その他</option>
+      </select><br>
+    金額：<input type="text" name="amount" class="is-error">円
+      <span class="error">金額は1円以上で入力してください</span><br>
+    メモ：<input type="text" name="memo" size="30"><br>
+    <button type="submit">登録する</button>
+  </form>
+  <a href="index.html">一覧へ戻る</a>
+</body>
+</html>

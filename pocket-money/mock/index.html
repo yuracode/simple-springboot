@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><title>お小遣い帳</title>
+  <style>
+    table { border-collapse: collapse; } th, td { border: 1px solid #999; padding: 4px 8px; }
+    .message { color: green; }
+    .income { color: blue; } .expense { color: red; }
+    .balance { font-size: 1.4em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <!-- モック：GET /pocket -->
+
+  <h1>お小遣い帳</h1>
+
+  <p class="message">「おやつ 150円」を登録しました</p>
+
+  <p class="balance">残高：2,250円</p>
+
+  <form action="index.html" method="get">
+    <input type="month" name="month" value="2026-10">
+    <button type="submit">表示</button>
+    <a href="summary.html">月の集計を見る</a> ｜ <a href="categories.html">カテゴリの管理</a>
+  </form>
+
+  <table>
+    <tr><th>日付</th><th>種類</th><th>カテゴリ</th><th>金額</th><th>メモ</th><th></th></tr>
+    <tr>
+      <td>2026-10-01</td><td class="income">収入</td><td>おこづかい</td>
+      <td class="income">+3,000円</td><td></td>
+      <td><a href="edit.html">編集</a>
+        <form action="index.html" method="get" style="display:inline"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>2026-10-03</td><td class="expense">支出</td><td>おやつ</td>
+      <td class="expense">-150円</td><td></td>
+      <td><a href="edit.html">編集</a>
+        <form action="index.html" method="get" style="display:inline"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>2026-10-05</td><td class="expense">支出</td><td>本</td>
+      <td class="expense">-800円</td><td>マンガ</td>
+      <td><a href="edit.html">編集</a>
+        <form action="index.html" method="get" style="display:inline"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>2026-10-12</td><td class="income">収入</td><td>お手伝い</td>
+      <td class="income">+500円</td><td>皿洗い</td>
+      <td><a href="edit.html">編集</a>
+        <form action="index.html" method="get" style="display:inline"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>2026-10-20</td><td class="expense">支出</td><td>文房具</td>
+      <td class="expense">-300円</td><td>ノート</td>
+      <td><a href="edit.html">編集</a>
+        <form action="index.html" method="get" style="display:inline"><button type="submit">削除</button></form></td>
+    </tr>
+  </table>
+  <p>全 5 件</p>
+  <p><a href="new.html">新しく記録する</a></p>
+</body>
+</html>
