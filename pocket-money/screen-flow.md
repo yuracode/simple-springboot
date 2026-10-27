@@ -1,10 +1,11 @@
 # お小遣い帳（pocket-money）画面遷移図
 
-`mock/` の 7 画面のつながりを図にしたもの。URL は [url-design.md](url-design.md) の No を付けている。
+`mock/` の 8 画面のつながりを図にしたもの。URL は [url-design.md](url-design.md) の No を付けている。
 
 - 実線の矢印（`-->`）：リンク（GET）で移動する
 - 点線の矢印（`-.->`）：フォームを POST して、成功したら `redirect:` で移動する
 - 入力エラーのときは `redirect` せず、同じフォーム画面をエラー表示付きで返す
+- 角の丸い箱はリクエスト（画面ではない）
 
 ## 1. 全体図
 
@@ -49,6 +50,8 @@ flowchart TD
     edit -->|一覧へ戻る| index
 ```
 
+---
+
 ## 3. 月の集計
 
 ```mermaid
@@ -85,6 +88,8 @@ flowchart TD
 
 カテゴリが記録で使われているときは削除せずに `redirect:/categories` し、カテゴリの一覧に `errorMessage` を表示する。
 
+---
+
 ## 5. 入力エラーのとき
 
 登録・更新でチェックに引っかかったときは、リダイレクトせず同じフォームを返す（入力した値とエラーメッセージが表示される）。
@@ -95,4 +100,24 @@ flowchart LR
     edit["記録の編集<br>mock/edit.html"] -.->|"POST /pocket/{id}<br>エラー"| edit
     catNew["カテゴリの追加<br>mock/category-new.html"] -.->|"POST /categories<br>エラー"| catNew
     catEdit["カテゴリの編集<br>mock/category-edit.html"] -.->|"POST /categories/{id}<br>エラー"| catEdit
+```
+
+---
+
+## 6. 見つからないとき（404）
+
+URL の ID が DB にないときは、どの URL からでも「見つかりません」の画面をステータス 404 で返す（リダイレクトしない）。削除済みの記録の編集画面をブックマークから開いたときや、URL を直接打ったときに起きる。
+
+```mermaid
+flowchart TD
+    pocketReq(["記録の URL（No.4〜6）<br>GET /pocket/{id}/edit<br>POST /pocket/{id}<br>POST /pocket/{id}/delete"])
+    categoryReq(["カテゴリの URL（No.11〜13）<br>GET /categories/{id}/edit<br>POST /categories/{id}<br>POST /categories/{id}/delete"])
+    notFound["見つかりません（404）<br>pocket/not-found.html<br>mock/not-found.html"]
+    index["一覧・残高<br>GET /pocket（No.1）<br>mock/index.html"]
+    categories["カテゴリの一覧<br>GET /categories（No.8）<br>mock/categories.html"]
+
+    pocketReq -->|"ID がない<br>「記録が見つかりません」"| notFound
+    categoryReq -->|"ID がない<br>「カテゴリが見つかりません」"| notFound
+    notFound -->|お小遣い帳へ戻る| index
+    notFound -->|カテゴリの管理| categories
 ```
