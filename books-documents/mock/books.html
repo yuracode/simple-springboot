@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><title>書籍一覧</title>
+  <style>
+    table { border-collapse: collapse; } th, td { border: 1px solid #999; padding: 4px 8px; }
+    .message { color: green; }
+    form.inline { display: inline; }
+  </style>
+</head>
+<body>
+  <!-- モック：GET /books（id=1 を更新した直後） -->
+  <h1>書籍一覧（Thymeleaf 版）</h1>
+
+  <p class="message">「スッキリわかるJava入門」を更新しました</p>
+
+  <form action="books.html" method="get">
+    <input type="text" name="keyword" value="" placeholder="タイトル・著者">
+    <button type="submit">検索</button>
+    <a href="books.html">クリア</a>
+  </form>
+
+  <table>
+    <tr><th>ID</th><th>タイトル</th><th>著者</th><th>価格</th><th></th><th></th></tr>
+    <tr>
+      <td>1</td><td><a href="book-detail.html">スッキリわかるJava入門</a></td><td>中山清喬</td><td>2,860円</td>
+      <td><a href="book-edit.html">編集</a></td>
+      <td><form class="inline" action="books.html" method="get"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>2</td><td><a href="book-detail.html">スッキリわかるサーブレット&amp;JSP入門</a></td><td>国本大悟</td><td>3,080円</td>
+      <td><a href="book-edit.html">編集</a></td>
+      <td><form class="inline" action="books.html" method="get"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>3</td><td><a href="book-detail.html">スッキリわかるSQL入門</a></td><td>中山清喬</td><td>2,860円</td>
+      <td><a href="book-edit.html">編集</a></td>
+      <td><form class="inline" action="books.html" method="get"><button type="submit">削除</button></form></td>
+    </tr>
+    <tr>
+      <td>4</td><td><a href="book-detail.html">Spring徹底入門</a></td><td>NTTデータ</td><td>4,400円</td>
+      <td><a href="book-edit.html">編集</a></td>
+      <td><form class="inline" action="books.html" method="get"><button type="submit">削除</button></form></td>
+    </tr>
+  </table>
+  <p>全 4 冊</p>
+  <p><a href="book-new.html">新しく登録する</a></p>
+  <a href="books.html">トップへ</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>書籍の登録・編集</title></head>
+<body>
+  <!-- モック：GET /books/new（空のフォーム） -->
+  <h1>書籍の登録</h1>
+
+  <form action="books.html" method="get">
+    タイトル：<input type="text" name="title" size="40"><br>
+    著者：<input type="text" name="author"><br>
+    価格：<input type="number" name="price" min="0">円<br>
+    <button type="submit">登録する</button>
+  </form>
+
+  <a href="books.html">一覧へ戻る</a>
+</body>
+</html>

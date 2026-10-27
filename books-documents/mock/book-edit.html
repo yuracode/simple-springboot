@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>書籍の登録・編集</title></head>
+<body>
+  <!-- モック：GET /books/{id}/edit（id=1 を開いた状態） -->
+  <h1>書籍の編集</h1>
+
+  <form action="books.html" method="get">
+    タイトル：<input type="text" name="title" size="40" value="スッキリわかるJava入門"><br>
+    著者：<input type="text" name="author" value="中山清喬"><br>
+    価格：<input type="number" name="price" min="0" value="2860">円<br>
+    <button type="submit">更新する</button>
+  </form>
+
+  <a href="books.html">一覧へ戻る</a>
+</body>
+</html>
