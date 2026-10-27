@@ -154,5 +154,6 @@
 
 | 状況 | ステータス | 画面 |
 |---|---|---|
-| 存在しない ID（No.4〜6、11〜13） | 404 | `pocket/not-found.html`「記録が見つかりません」 |
+| 存在しない ID（No.4〜6） | 404 | `pocket/not-found.html`「記録が見つかりません（ID：N）」（モック：`mock/not-found.html`） |
+| 存在しない ID（No.11〜13） | 404 | `pocket/not-found.html`「カテゴリが見つかりません（ID：N）」 |
 | `month` の形式が不正 | 400 | 今月の表示に戻す（またはエラー画面） |
