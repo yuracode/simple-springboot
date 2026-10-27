@@ -329,3 +329,76 @@ public class BookController {
    ヒント：削除する前に `repository.findById(id)` でタイトルを取っておく。
 3. `insert` の戻り値も `int` にして、登録された行数をログ（`System.out.println`）に出してみる。
 4. （チャレンジ）登録したばかりの本の ID を知りたい。PostgreSQL の `INSERT ... RETURNING id` を使い、`jdbcTemplate.queryForObject(sql, Integer.class, title, author, price)` で受け取って、登録後に詳細ページ（`/books/{id}`）へリダイレクトする。
+
+## 完全版にするための不足ファイル
+この付録Aで載せたファイル（`BookRepository.java`・`BookController.java`・`book-form.html`・`books.html`）のほかに、動かすには次のファイルが必要になる。それぞれのレッスンで作ったものをそのまま転記しておく。
+
+### `src/main/resources/application.properties`（レッスン11）
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/springboot
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+# 起動時に schema.sql（テーブル作成）と data.sql（サンプルデータ）を実行する
+spring.sql.init.mode=always
+```
+
+### `src/main/resources/schema.sql`（レッスン11）
+```sql
+-- レッスン11：書籍テーブル
+CREATE TABLE IF NOT EXISTS books (
+    id     SERIAL PRIMARY KEY,
+    title  VARCHAR(100) NOT NULL,
+    author VARCHAR(50)  NOT NULL,
+    price  INTEGER      NOT NULL
+);
+```
+
+### `src/main/resources/data.sql`（レッスン11）
+```sql
+-- レッスン11：サンプルデータ（テーブルが空のときだけ入れる）
+INSERT INTO books (title, author, price)
+SELECT * FROM (VALUES
+    ('スッキリわかるJava入門', '中山清喬', 2860),
+    ('スッキリわかるサーブレット&JSP入門', '国本大悟', 3080),
+    ('スッキリわかるSQL入門', '中山清喬', 2860),
+    ('Spring徹底入門', 'NTTデータ', 4400)
+) AS v(title, author, price)
+WHERE NOT EXISTS (SELECT 1 FROM books);
+```
+
+### `model/Book.java`（レッスン12）
+```java
+package com.example.demo.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+// レッスン12：書籍（books テーブルの1行に対応）
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Book {
+    private Integer id;
+    private String title;
+    private String author;
+    private Integer price;
+}
+```
+
+### `templates/book-detail.html`（レッスン13）
+```html
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>書籍の詳細</title></head>
+<body>
+  <h1 th:text="${book.title}">タイトル</h1>
+  <dl>
+    <dt>ID</dt><dd th:text="${book.id}"></dd>
+    <dt>著者</dt><dd th:text="${book.author}"></dd>
+    <dt>価格</dt><dd th:text="|${#numbers.formatInteger(book.price, 1, 'COMMA')}円|"></dd>
+  </dl>
+  <a href="/books">一覧へ戻る</a>
+</body>
+</html>
+```
