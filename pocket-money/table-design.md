@@ -7,16 +7,23 @@
 | 1 | `categories` | カテゴリ | カテゴリの選択肢（マスタ） |
 | 2 | `pocket_entries` | お小遣い記録 | 収入・支出を 1 件 1 行で記録する |
 
-```
-categories                     pocket_entries
-+----------------+             +------------------+
-| id (PK)        |<----+       | id (PK)          |
-| name           |     |       | entry_date       |
-| sort_order     |     |       | type             |
-+----------------+     +-------| category_id (FK) |
-                         1 対 多 | amount           |
-                               | memo             |
-                               +------------------+
+```mermaid
+erDiagram
+    direction LR
+    categories ||--o{ pocket_entries : "1 対 多"
+    categories {
+        SERIAL id PK "ID"
+        VARCHAR(30) name UK "カテゴリ名"
+        INTEGER sort_order "表示順"
+    }
+    pocket_entries {
+        SERIAL id PK "ID"
+        DATE entry_date "日付"
+        VARCHAR(10) type "種類（収入／支出）"
+        INTEGER category_id FK "カテゴリ ID"
+        INTEGER amount "金額（正の数）"
+        VARCHAR(100) memo "メモ（NULL 可）"
+    }
 ```
 
 - 1 つのカテゴリに、たくさんの記録がつながる（1 対 多）。
